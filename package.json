@@ -1,0 +1,12 @@
+{
+  "name": "spooky-cookie",
+  "version": "0.0.0",
+  "description": "service to detect 3rd-party cookies support ",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bubenshchykov/spooky-cookie.git"
+  },
+  "author": "Alex Bubenshchykov",
+  "license": "BSD"
+}
