@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express(express.logger());
+var app = express.createServer(express.logger());
 
 app.get('/', function(req, res){
 	var id = Math.floor((Math.random()*1000)+1);
