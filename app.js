@@ -4,6 +4,7 @@ var app = express.createServer(express.logger());
 app.get('/', function(req, res){
 	var id = Math.floor((Math.random()*1000)+1);
 	var script = "(function(){var gotcha=document.cookie.indexOf('spooky-cookie-"+id+"')!==-1;spookyCookie(gotcha);})();";
+	res.setHeader('Content-Type', 'application/javascript');	
 	res.cookie('spooky-cookie-'+id, 'love', { maxAge: 10000 });
 	res.send(script);
 });
