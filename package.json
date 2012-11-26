@@ -10,6 +10,10 @@
    "dependencies": {
     "express": "~2.5"
   },
+  "engines":{
+    "node":"0.8.x",
+    "npm":"~1.1.9"
+  },
   "author": "Alex Bubenshchykov",
   "license": "BSD"
 }
