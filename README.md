@@ -12,7 +12,7 @@ Page's head should have http/https detection script <code>&lt;script src="https:
 example
 -------------
 
-When writing tests that need a real integration you need to do the following at the start of your test:
+Code injectes a feature-detection script and callback function what sets a feature-class like modernizer.
 ```javascript
 (function detect(){
 	var spookyCookieService = "limitless-wildwood-5406.herokuapp.com";
