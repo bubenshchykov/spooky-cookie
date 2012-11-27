@@ -1,11 +1,17 @@
 var express = require('express');
 var app = express.createServer(express.logger());
 
+app.use(express.cookieParser());
+
 app.get('/', function(req, res){
-	var id = Math.floor((Math.random()*1000)+1);
-	var script = "(function(){var gotcha=document.cookie.indexOf('spooky-cookie-"+id+"')!==-1;spookyCookie(gotcha);})();";
+	res.cookie('spooky-cookie', 'love', { maxAge: 10000, path:'/gotcha' });
+	res.redirect('/gotcha');
+});
+
+app.get('/gotcha', function(req, res){
+	var gotCookie = req.cookies['spooky-cookie'] === 'love';
+	var script = "spookyCookie("+gotCookie+");";
 	res.setHeader('Content-Type', 'application/javascript');	
-	res.cookie('spooky-cookie-'+id, 'love', { maxAge: 10000 });
 	res.send(script);
 });
 
