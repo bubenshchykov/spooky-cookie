@@ -5,7 +5,11 @@ app.use(express.cookieParser());
 
 app.get('/', function(req, res){
 	res.cookie('spooky-cookie', 'love', { maxAge: 10000, path:'/gotcha' });
-	res.redirect(req.url + 'gotcha');
+	res.redirect(root() + '/gotcha');
+	function root() {
+		var protocol = req.connection.encrypted ? 'https' : 'http';
+		return protocol + '://' + req.headers.host;
+	}
 });
 
 app.get('/gotcha', function(req, res){
