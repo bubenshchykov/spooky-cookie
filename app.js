@@ -5,16 +5,17 @@ app.use(express.cookieParser());
 
 app.get('/', function(req, res){
 	res.cookie('spooky-cookie', 'love', { maxAge: 10000, path:'/gotcha' });
-	res.redirect(root() + '/gotcha');
+	var info = req.header('X-Forwaded-Proto') + ',' + req.connection.encrypted;
+	res.redirect(root() + '/gotcha' + '/' + info);
 	function root() {
 		var protocol = (req.header('X-Forwaded-Proto') === 'https') ? 'https' : 'http';
 		return protocol + '://' + req.headers.host;
 	}
 });
 
-app.get('/gotcha', function(req, res){
+app.get('/gotcha/:info', function(req, res){
 	var gotCookie = req.cookies['spooky-cookie'] === 'love';
-	var script = "spookyCookie("+gotCookie+");";
+	var script = "spookyCookie("+gotCookie+");" + req.params.info;
 	res.setHeader('Content-Type', 'application/javascript');	
 	res.send(script);
 });
