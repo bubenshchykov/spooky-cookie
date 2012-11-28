@@ -7,7 +7,7 @@ app.get('/', function(req, res){
 	res.cookie('spooky-cookie', 'love', { maxAge: 10000, path:'/gotcha' });
 	res.redirect(root() + '/gotcha');
 	function root() {
-		var protocol = req.connection.encrypted ? 'https' : 'http';
+		var protocol = (req.header('X-Forwaded-Proto') === 'https') ? 'https' : 'http';
 		return protocol + '://' + req.headers.host;
 	}
 });
