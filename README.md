@@ -2,12 +2,12 @@ spooky-cookie
 =============
 
 Service to detect 3rd-party cookies support.
-<br>Running on heroku <code>limitless-wildwood-5406.herokuapp.com</code>, http and https.
+<br>Running on heroku <code>spooky-cookie.herokuapp.com</code>, http and https.
 
 usage
 -------------
 
-Page's head should have http/https detection script <code>&lt;script src="https://limitless-wildwood-5406.herokuapp.com"> &lt;/script></code>. Callback function should be defined <code>function spookyCookie(areSupported) {..}</code> - will receive <i>true</i> if 3rd party cookies are supported
+Page's head should have http/https detection script <code>&lt;script src="https://spooky-cookie.herokuapp.com"> &lt;/script></code>. Callback function should be defined <code>function spookyCookie(areSupported) {..}</code> - will receive <i>true</i> if 3rd party cookies are supported
 
 example
 -------------
@@ -15,7 +15,7 @@ example
 Code injectes a feature-detection script and callback function what sets a feature-class like modernizer.
 ```javascript
 (function detect(){
-	var spookyCookieService = "limitless-wildwood-5406.herokuapp.com";
+	var spookyCookieService = "spooky-cookie.herokuapp.com";
 	window.spookyCookie = function(gotCookie){
 		gotCookie && $('html').addClass('cookie-3rd-support');
 		/* or your code */
