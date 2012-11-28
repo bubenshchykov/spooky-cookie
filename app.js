@@ -5,10 +5,10 @@ app.use(express.cookieParser());
 
 app.get('/', function(req, res){
 	res.cookie('spooky-cookie', 'love', { maxAge: 10000, path:'/gotcha' });
-	var info = req.header('X-Forwaded-Proto') + ',' + req.connection.encrypted;
+	var info = req.headers['x-forwarded-proto'] + ',' + JSON.stringify(req.headers);
 	res.redirect(root() + '/gotcha' + '/' + info);
 	function root() {
-		var protocol = (req.header('X-Forwaded-Proto') === 'https') ? 'https' : 'http';
+		var protocol = (req.headers['x-forwarded-proto'] === "https") ? 'https' : 'http';
 		return protocol + '://' + req.headers.host;
 	}
 });
